@@ -1,0 +1,59 @@
+Edges with weights:
+Edge (0, 3) has weight 10
+Edge (0, 6) has weight 7
+Edge (0, 9) has weight 8
+Edge (1, 4) has weight 5
+Edge (1, 5) has weight 7
+Edge (1, 10) has weight 5
+Edge (2, 3) has weight 3
+Edge (3, 4) has weight 2
+Edge (3, 5) has weight 2
+Edge (3, 6) has weight 1
+Edge (3, 8) has weight 4
+Edge (4, 7) has weight 3
+Edge (5, 7) has weight 5
+Edge (6, 8) has weight 2
+Edge (7, 9) has weight 4
+Edge (9, 10) has weight 10
+
+Nodes with demands:
+Node 0 has demand 0
+Node 1 has demand 0
+Node 2 has demand 0
+Node 3 has demand 0
+Node 4 has demand 0
+Node 5 has demand 0
+Node 6 has demand 0
+Node 7 has demand 0
+Node 8 has demand 94
+Node 9 has demand 0
+Node 10 has demand 49
+
+Depth of each node:
+Node 0 is at depth 0
+Node 1 is at depth 0
+Node 2 is at depth 0
+Node 3 is at depth 1
+Node 6 is at depth 1
+Node 9 is at depth 1
+Node 4 is at depth 1
+Node 5 is at depth 1
+Node 10 is at depth 1
+Node 8 is at depth 2
+Node 7 is at depth 2
+
+Longest path length (height) or the number of levels in BOM (in terms of number of nodes): 5
+Longest path: 0 -> 3 -> 4 -> 7 -> 9 -> 10
+
+BOM matrix:
+[[ 0  0  0 10  0  0  7  0  0  8  0  0]
+ [ 0  0  0  0  5  7  0  0  0  0  5  0]
+ [ 0  0  0  3  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0  2  2  1  0  4  0  0  0]
+ [ 0  0  0  0  0  0  0  3  0  0  0  0]
+ [ 0  0  0  0  0  0  0  5  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  2  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  4  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0 94]
+ [ 0  0  0  0  0  0  0  0  0  0 10  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0 49]]
