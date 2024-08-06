@@ -1,3 +1,5 @@
+# random_location_generator.py
+
 import os
 import shapefile
 import numpy as np
@@ -6,7 +8,7 @@ import matplotlib.pyplot as plt
 from shapely.geometry import Point, shape
 from collections import Counter
 from math import radians, sin, cos, sqrt, atan2
-import time
+from facility import Facility  # Import the Facility class
 
 class RandomLocationGenerator:
     def __init__(self, shapefile_path, fixed_seed):
@@ -33,6 +35,7 @@ class RandomLocationGenerator:
         self.shp = None
         self.filtered_data = None
         self.count = Counter()
+        self.facility_objects = []
 
         self.load_shapefile()
         self.filter_shapes_and_records()
@@ -72,6 +75,28 @@ class RandomLocationGenerator:
         np.random.seed(self.fixed_seed)  # Ensure the same seed is used for reproducibility
         random_locations = self.sample(num_locations)
 
+        # Clear any previous facility objects
+        self.facility_objects = []
+
+        for index, (lon, lat) in enumerate(random_locations):
+            ttr = np.random.randint(2, 11)  # Random TTR between 2 and 10
+            si = np.random.randint(1, 11)   # Random SI between 1 and 10
+            facility_obj = Facility(index, lat, lon, ttr, si)
+            self.facility_objects.append(facility_obj)
+
+        # Sort facility objects based on their indices
+        self.facility_objects.sort(key=lambda fac: fac.index)
+
+        # Compute distances between all facilities
+        for i, fac1 in enumerate(self.facility_objects):
+            for j, fac2 in enumerate(self.facility_objects):
+                if i != j:
+                    distance = self.haversine(fac1.lon, fac1.lat, fac2.lon, fac2.lat)
+                    fac1.distances[fac2.index] = distance
+                else:
+                    fac1.distances[fac1.index] = 0  # Distance to itself is zero
+
+        # Create GeoDataFrame for plotting
         gdf_locations = gpd.GeoDataFrame(geometry=[Point(lon, lat) for lon, lat in random_locations],
                                          crs="EPSG:4326")
         gdf_shapefile = gpd.read_file(self.shapefile_path)
@@ -82,6 +107,12 @@ class RandomLocationGenerator:
         gdf_shapefile.plot(ax=ax, color='lightgrey', edgecolor='black')
         gdf_locations.plot(ax=ax, color='red', markersize=50, label='Facility Locations')
 
+        # Annotate each location with its index
+        for i in range(len(random_locations)):
+            lon1, lat1 = random_locations[i]
+            ax.text(lon1, lat1, f'{i}', fontsize=10, ha='right', color='black')  # Show index at each location
+
+        # Draw lines and distances between facilities
         for i in range(len(random_locations)):
             for j in range(i + 1, len(random_locations)):
                 lon1, lat1 = random_locations[i]
@@ -111,3 +142,12 @@ class RandomLocationGenerator:
         file_name = os.path.join(output_directory, 'facility_locations.png')
         plt.savefig(file_name)
         plt.close()
+
+        print(f"Plot saved to {file_name}")
+
+        # Write Facility objects to Facilities.txt
+        facilities_file = os.path.join(output_directory, 'Facilities.txt')
+        with open(facilities_file, 'w') as f:
+            for fac in self.facility_objects:
+                f.write(f"{fac}\n")
+        print(f"Facility details saved to {facilities_file}")

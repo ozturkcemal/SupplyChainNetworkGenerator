@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2e6cf0e-cd9d-45f0-8b9a-c9499f73bee8" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/output/BOM_output.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/BOM_visualization.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/bom_matrix.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/facility_locations.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/random_location_generator.py" afterDir="false" />
+    <list default="true" id="e2e6cf0e-cd9d-45f0-8b9a-c9499f73bee8" name="Changes" comment="location generation seperated as a class&#10;putput folder created &#10;number of locations parameterized if not provided as user input&#10;output folder added">
+      <change afterPath="$PROJECT_DIR$/facility.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/Facilities.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/BOM_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/output/BOM_output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/BOM_visualization.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/BOM_visualization.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/bom_matrix.json" beforeDir="false" afterPath="$PROJECT_DIR$/output/bom_matrix.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/facility_locations.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/facility_locations.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/random_location_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/random_location_generator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +125,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722899723562</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="location generation seperated as a class&#10;putput folder created &#10;number of locations parameterized if not provided as user input">
+      <option name="closed" value="true" />
+      <created>1722949596607</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722949596607</updated>
+    </task>
+    <task id="LOCAL-00006" summary="location generation seperated as a class&#10;putput folder created &#10;number of locations parameterized if not provided as user input&#10;output folder added">
+      <option name="closed" value="true" />
+      <created>1722949731763</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1722949731763</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -140,7 +157,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Create README.md" />
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="location generation seperated as a class&#10;putput folder created &#10;number of locations parameterized if not provided as user input" />
+    <MESSAGE value="location generation seperated as a class&#10;putput folder created &#10;number of locations parameterized if not provided as user input&#10;output folder added" />
+    <option name="LAST_COMMIT_MESSAGE" value="location generation seperated as a class&#10;putput folder created &#10;number of locations parameterized if not provided as user input&#10;output folder added" />
   </component>
 </project>
