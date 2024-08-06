@@ -1,8 +1,8 @@
-Facility Index: 0, Latitude: 43.38, Longitude: -93.25, TTR: 8, SI: 7, Distances: 0: 0.00 km, 1: 6719.04 km, 2: 1595.83 km, 3: 9283.15 km, 4: 866.34 km, 5: 4312.40 km, 6: 4960.51 km, 7: 6615.50 km
-Facility Index: 1, Latitude: 43.13, Longitude: -5.84, TTR: 10, SI: 7, Distances: 0: 6719.04 km, 1: 0.00 km, 2: 8275.04 km, 3: 8497.56 km, 4: 7375.84 km, 5: 8110.59 km, 6: 8170.62 km, 7: 2362.18 km
-Facility Index: 2, Latitude: 32.31, Longitude: -104.87, TTR: 4, SI: 3, Distances: 0: 1595.83 km, 1: 8275.04 km, 2: 0.00 km, 3: 9983.34 km, 4: 1313.44 km, 5: 4656.58 km, 6: 5350.43 km, 7: 8185.37 km
-Facility Index: 3, Latitude: 48.73, Longitude: 119.59, TTR: 4, SI: 10, Distances: 0: 9283.15 km, 1: 8497.56 km, 2: 9983.34 km, 3: 0.00 km, 4: 8854.83 km, 5: 5354.99 km, 6: 4667.15 km, 7: 6167.89 km
-Facility Index: 4, Latitude: 44.10, Longitude: -104.00, TTR: 6, SI: 4, Distances: 0: 866.34 km, 1: 7375.84 km, 2: 1313.44 km, 3: 8854.83 km, 4: 0.00 km, 5: 3665.99 km, 6: 4343.72 km, 7: 6986.96 km
-Facility Index: 5, Latitude: 60.46, Longitude: -152.74, TTR: 9, SI: 9, Distances: 0: 4312.40 km, 1: 8110.59 km, 2: 4656.58 km, 3: 5354.99 km, 4: 3665.99 km, 5: 0.00 km, 6: 693.87 km, 7: 6414.43 km
-Facility Index: 6, Latitude: 62.09, Longitude: -165.29, TTR: 2, SI: 10, Distances: 0: 4960.51 km, 1: 8170.62 km, 2: 5350.43 km, 3: 4667.15 km, 4: 4343.72 km, 5: 693.87 km, 6: 0.00 km, 7: 6289.49 km
-Facility Index: 7, Latitude: 61.33, Longitude: 12.57, TTR: 7, SI: 7, Distances: 0: 6615.50 km, 1: 2362.18 km, 2: 8185.37 km, 3: 6167.89 km, 4: 6986.96 km, 5: 6414.43 km, 6: 6289.49 km, 7: 0.00 km
+Facility Index: 0, Latitude: 39.04, Longitude: 82.33, TTR: 3, SI: 8, Distances: 0: 0.00 km, 1: 10140.94 km, 2: 637.54 km, 3: 658.11 km, 4: 2138.06 km, 5: 5176.85 km, 6: 10674.67 km, 7: 10910.37 km
+Facility Index: 1, Latitude: 46.81, Longitude: -123.07, TTR: 6, SI: 9, Distances: 0: 10140.94 km, 1: 0.00 km, 2: 9527.51 km, 3: 10506.92 km, 4: 10534.41 km, 5: 7569.83 km, 6: 552.89 km, 7: 3886.22 km
+Facility Index: 2, Latitude: 44.77, Longitude: 82.51, TTR: 2, SI: 3, Distances: 0: 637.54 km, 1: 9527.51 km, 2: 0.00 km, 3: 1048.23 km, 4: 2488.91 km, 5: 4717.31 km, 6: 10057.29 km, 7: 10305.76 km
+Facility Index: 3, Latitude: 37.11, Longitude: 75.22, TTR: 10, SI: 4, Distances: 0: 658.11 km, 1: 10506.92 km, 2: 1048.23 km, 3: 0.00 km, 4: 2643.86 km, 5: 4939.40 km, 6: 11026.11 km, 7: 10899.68 km
+Facility Index: 4, Latitude: 28.32, Longitude: 101.61, TTR: 8, SI: 2, Distances: 0: 2138.06 km, 1: 10534.41 km, 2: 2488.91 km, 3: 2643.86 km, 4: 0.00 km, 5: 7200.49 km, 6: 11086.05 km, 7: 12391.30 km
+Facility Index: 5, Latitude: 59.44, Longitude: 13.91, TTR: 7, SI: 7, Distances: 0: 5176.85 km, 1: 7569.83 km, 2: 4717.31 km, 3: 4939.40 km, 4: 7200.49 km, 5: 0.00 km, 6: 7881.17 km, 7: 6197.92 km
+Facility Index: 6, Latitude: 42.65, Longitude: -119.23, TTR: 5, SI: 6, Distances: 0: 10674.67 km, 1: 552.89 km, 2: 10057.29 km, 3: 11026.11 km, 4: 11086.05 km, 5: 7881.17 km, 6: 0.00 km, 7: 3658.80 km
+Facility Index: 7, Latitude: 40.17, Longitude: -74.98, TTR: 4, SI: 2, Distances: 0: 10910.37 km, 1: 3886.22 km, 2: 10305.76 km, 3: 10899.68 km, 4: 12391.30 km, 5: 6197.92 km, 6: 3658.80 km, 7: 0.00 km

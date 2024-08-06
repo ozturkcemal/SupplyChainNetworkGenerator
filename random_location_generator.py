@@ -157,6 +157,10 @@ class RandomLocationGenerator:
         # print(f"Facility details saved to {facilities_file}")
         self.export_facility_data_to_json('facility_data.json')
 
+    def get_facilities(self):
+        """Return the list of Facility objects."""
+        return self.facility_objects
+
     def export_facility_data_to_json(self, filename):
         # Prepare data for the JSON file
         data = {

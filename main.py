@@ -15,6 +15,15 @@ class Main:
         # Generate and visualize random locations before running the main logic
         self.location_generator.generate_random_locations(self.num_locations)
 
+        # Store the list of nodes from BOM
+        self.nodes = self.bom.get_nodes()
+        print(f"List of nodes in the BOM: {self.nodes}")
+
+        # Store the list of facilities from RandomLocationGenerator
+        self.facilities = self.location_generator.get_facilities()
+        for fac in self.facilities:
+            print(f"{fac}")
+
     def get_user_input(self):
         n_input = input(
             "Enter the number of items in the Bill of Material (between 5 to 10, or press Enter to randomly assign): ")

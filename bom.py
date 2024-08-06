@@ -256,3 +256,9 @@ class BOM:
         }
         with open(filename, 'w') as json_file:
             json.dump(data, json_file, indent=4)
+
+    def get_nodes(self):
+        """Return the list of nodes in the BOM graph."""
+        if self.G is not None:
+            return list(self.G.nodes)
+        return []
