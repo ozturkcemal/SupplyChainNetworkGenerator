@@ -11,6 +11,8 @@ class Main:
         self.bom = BOM(self.n, self.num_roots, self.max_depth, self.max_parents, self.min_demand,
                        self.max_demand, self.seed)
         self.location_generator = RandomLocationGenerator('shapefiles/TM_WORLD_BORDERS-0.3.shp', fixed_seed=self.seed)
+        # Generate and visualize random locations before running the main logic
+        self.location_generator.generate_random_locations(self.num_locations)
         self.run()
 
     def get_user_input(self):
@@ -106,9 +108,6 @@ class Main:
 
             # Restore stdout
             sys.stdout = original_stdout
-
-        # Generate and visualize random locations
-        self.location_generator.generate_random_locations(self.num_locations)
 
     def export_bom_matrix_to_json(self, bom_matrix, filename, labels):
         bom_matrix_list = bom_matrix.tolist()
