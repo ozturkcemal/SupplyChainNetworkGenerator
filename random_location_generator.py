@@ -1,5 +1,3 @@
-# random_location_generator.py
-
 import json
 import os
 from collections import Counter
@@ -15,9 +13,11 @@ from facility import Facility  # Import the Facility class
 
 
 class RandomLocationGenerator:
-    def __init__(self, shapefile_path, fixed_seed):
+    def __init__(self, shapefile_path, fixed_seed, min_demand, max_demand):
         self.shapefile_path = shapefile_path
         self.fixed_seed = fixed_seed
+        self.min_demand = min_demand
+        self.max_demand = max_demand
         np.random.seed(self.fixed_seed)  # Set the random seed for reproducibility
 
         self.country_codes = [
@@ -85,7 +85,8 @@ class RandomLocationGenerator:
         for index, (lon, lat) in enumerate(random_locations):
             ttr = np.random.randint(2, 11)  # Random TTR between 2 and 10
             si = np.random.randint(1, 11)  # Random SI between 1 and 10
-            facility_obj = Facility(index, lat, lon, ttr, si)
+            capacity = np.random.randint(self.min_demand * 2, self.min_demand * 5 + 1)  # Capacity between min_demand * 2 and min_demand * 5
+            facility_obj = Facility(index, lat, lon, ttr, si, capacity)
             self.facility_objects.append(facility_obj)
 
         # Sort facility objects based on their indices
@@ -94,10 +95,11 @@ class RandomLocationGenerator:
         # Compute distances between all facilities
         for i, fac1 in enumerate(self.facility_objects):
             for j, fac2 in enumerate(self.facility_objects):
-                if i != j:
+                if i < j:  # Ensure each pair is only processed once
                     distance = self.haversine(fac1.lon, fac1.lat, fac2.lon, fac2.lat)
                     fac1.distances[fac2.index] = distance
-                else:
+                    fac2.distances[fac1.index] = distance  # Assign the distance from j to i
+                elif i == j:
                     fac1.distances[fac1.index] = 0  # Distance to itself is zero
 
         # Create GeoDataFrame for plotting
@@ -147,8 +149,6 @@ class RandomLocationGenerator:
         plt.savefig(file_name)
         plt.close()
 
-        # print(f"Plot saved to {file_name}")
-
         # Write Facility objects to Facilities.txt
         facilities_file = os.path.join(output_directory, 'Facilities.txt')
         with open(facilities_file, 'w') as f:
@@ -168,7 +168,7 @@ class RandomLocationGenerator:
         }
 
         # Create the header for the table
-        headers = ["facilities"] + [f"Facility {i}" for i in range(len(self.facility_objects))] + ["TTR", "SI", "lat",
+        headers = ["facilities"] + [f"Facility {i}" for i in range(len(self.facility_objects))] + ["TTR", "SI", "Capacity", "lat",
                                                                                                    "lon"]
 
         # Initialize the table data with the headers
@@ -179,8 +179,8 @@ class RandomLocationGenerator:
             row = [f"Facility {i}"]  # Start with the facility index
             # Add distance data
             row.extend([facility.distances[j] for j in range(len(self.facility_objects))])
-            # Add additional information (TTR, SI, lat, lon)
-            row.extend([facility.ttr, facility.si, facility.lat, facility.lon])
+            # Add additional information (TTR, SI, capacity, lat, lon)
+            row.extend([facility.ttr, facility.si, facility.capacity, facility.lat, facility.lon])
             table.append(row)
 
         # Add the table to the data dictionary
@@ -190,10 +190,8 @@ class RandomLocationGenerator:
         output_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output')
         os.makedirs(output_directory, exist_ok=True)
 
-        # Save the data to a JSON file in the 'output' directory
-        output_file = os.path.join(output_directory, filename)
-        with open(output_file, 'w') as json_file:
+        # Save the data to a JSON file
+        json_file_path = os.path.join(output_directory, filename)
+        with open(json_file_path, 'w') as json_file:
             json.dump(data, json_file, indent=4)
-        # df = pd.DataFrame(data) #added for checking the json format
-        # print(df)
-        # print(f"Facility data saved to {output_file}")
+        # print(f"Facility data saved to {json_file_path}")
