@@ -1,9 +1,9 @@
 import random
-
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
-
+import json
+import sys
 
 class BOM:
     def __init__(self, n, num_roots, max_depth, max_parents, min_demand, max_demand, seed=None):
@@ -197,3 +197,60 @@ class BOM:
         bom_matrix[:, -1] = demands
 
         return bom_matrix
+
+    def run(self):
+        # Open a file to write the print statements
+        with open('output/BOM_output.txt', 'w') as f:
+            # Redirect stdout to the file
+            original_stdout = sys.stdout
+            sys.stdout = f
+
+            # Print the edges with weights
+            print("Edges with weights:")
+            for (u, v, wt) in self.G.edges(data='weight'):
+                print(f"Edge ({u}, {v}) has weight {wt}")
+
+            # Print the nodes with their demands
+            print("\nNodes with demands:")
+            for node, demand in nx.get_node_attributes(self.G, 'demand').items():
+                print(f"Node {node} has demand {demand}")
+
+            # Print the depth of each node
+            print("\nDepth of each node:")
+            for node, depth in self.depth.items():
+                print(f"Node {node} is at depth {depth}")
+
+            # Find and print the longest path
+            longest_path_length, longest_path = self.find_longest_path()
+            print(
+                f"\nLongest path length (height) or the number of levels in BOM (in terms of number of nodes): {longest_path_length}")
+            print(f"Longest path: {' -> '.join(map(str, longest_path))}")
+
+            # Visualize the tree and save the figure
+            self.visualize_graph('output/BOM_visualization.png')
+
+            # Create and print the BOM matrix
+            bom_matrix = self.create_bom_matrix()
+            print("\nBOM matrix:")
+            print(bom_matrix)
+
+            # Define labels
+            labels = {
+                "nodes": [f"Node {i}" for i in range(self.n)],
+                "demand": "Demand"
+            }
+
+            # Export BOM matrix to JSON
+            self.export_bom_matrix_to_json(bom_matrix, 'output/bom_matrix.json', labels)
+
+            # Restore stdout
+            sys.stdout = original_stdout
+
+    def export_bom_matrix_to_json(self, bom_matrix, filename, labels):
+        bom_matrix_list = bom_matrix.tolist()
+        data = {
+            "labels": labels,
+            "matrix": bom_matrix_list
+        }
+        with open(filename, 'w') as json_file:
+            json.dump(data, json_file, indent=4)

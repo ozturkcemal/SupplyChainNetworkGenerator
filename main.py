@@ -1,19 +1,19 @@
-import json
-import sys
 import random
-import networkx as nx
+
 from bom import BOM
 from random_location_generator import RandomLocationGenerator
+
 
 class Main:
     def __init__(self):
         self.get_user_input()
         self.bom = BOM(self.n, self.num_roots, self.max_depth, self.max_parents, self.min_demand,
                        self.max_demand, self.seed)
+        # Call the run method on the BOM instance
+        self.bom.run()
         self.location_generator = RandomLocationGenerator('shapefiles/TM_WORLD_BORDERS-0.3.shp', fixed_seed=self.seed)
         # Generate and visualize random locations before running the main logic
         self.location_generator.generate_random_locations(self.num_locations)
-        self.run()
 
     def get_user_input(self):
         n_input = input(
@@ -46,7 +46,8 @@ class Main:
         # Get number of facility locations
         while True:
             try:
-                num_locations_input = input(f"Enter the number of facility locations to generate (between {self.n // 2} and {self.n}, or press Enter to randomly assign): ")
+                num_locations_input = input(
+                    f"Enter the number of facility locations to generate (between {self.n // 2} and {self.n}, or press Enter to randomly assign): ")
                 if num_locations_input:
                     self.num_locations = int(num_locations_input)
                     if self.num_locations < (self.n // 2) or self.num_locations > self.n:
@@ -59,64 +60,6 @@ class Main:
             except ValueError:
                 print("Invalid input. Please enter a valid integer.")
 
-    def run(self):
-        # Open a file to write the print statements
-        with open('output/BOM_output.txt', 'w') as f:
-            # Redirect stdout to the file
-            original_stdout = sys.stdout
-            sys.stdout = f
-
-            dag_with_multiple_parents = self.bom.G
-
-            # Print the edges with weights
-            print("Edges with weights:")
-            for (u, v, wt) in dag_with_multiple_parents.edges(data='weight'):
-                print(f"Edge ({u}, {v}) has weight {wt}")
-
-            # Print the nodes with their demands
-            print("\nNodes with demands:")
-            for node, demand in nx.get_node_attributes(dag_with_multiple_parents, 'demand').items():
-                print(f"Node {node} has demand {demand}")
-
-            # Print the depth of each node
-            print("\nDepth of each node:")
-            for node, depth in self.bom.depth.items():
-                print(f"Node {node} is at depth {depth}")
-
-            # Find and print the longest path
-            longest_path_length, longest_path = self.bom.find_longest_path()
-            print(
-                f"\nLongest path length (height) or the number of levels in BOM (in terms of number of nodes): {longest_path_length}")
-            print(f"Longest path: {' -> '.join(map(str, longest_path))}")
-
-            # Visualize the tree and save the figure
-            self.bom.visualize_graph('output/BOM_visualization.png')
-
-            # Create and print the BOM matrix
-            bom_matrix = self.bom.create_bom_matrix()
-            print("\nBOM matrix:")
-            print(bom_matrix)
-
-            # Define labels
-            labels = {
-                "nodes": [f"Node {i}" for i in range(self.n)],
-                "demand": "Demand"
-            }
-
-            # Export BOM matrix to JSON
-            self.export_bom_matrix_to_json(bom_matrix, 'output/bom_matrix.json', labels)
-
-            # Restore stdout
-            sys.stdout = original_stdout
-
-    def export_bom_matrix_to_json(self, bom_matrix, filename, labels):
-        bom_matrix_list = bom_matrix.tolist()
-        data = {
-            "labels": labels,
-            "matrix": bom_matrix_list
-        }
-        with open(filename, 'w') as json_file:
-            json.dump(data, json_file, indent=4)
 
 if __name__ == "__main__":
     Main()

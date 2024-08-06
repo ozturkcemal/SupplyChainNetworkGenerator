@@ -1,18 +1,26 @@
 Edges with weights:
+Edge (0, 2) has weight 4
 Edge (0, 3) has weight 2
-Edge (0, 5) has weight 10
-Edge (0, 6) has weight 6
-Edge (0, 7) has weight 5
-Edge (0, 8) has weight 6
-Edge (1, 4) has weight 9
-Edge (1, 5) has weight 9
-Edge (2, 3) has weight 9
-Edge (2, 4) has weight 1
-Edge (3, 8) has weight 1
-Edge (4, 6) has weight 1
-Edge (4, 9) has weight 7
-Edge (6, 7) has weight 10
-Edge (7, 9) has weight 3
+Edge (0, 5) has weight 8
+Edge (1, 2) has weight 1
+Edge (1, 4) has weight 7
+Edge (1, 6) has weight 10
+Edge (1, 7) has weight 5
+Edge (1, 9) has weight 2
+Edge (1, 11) has weight 2
+Edge (2, 3) has weight 3
+Edge (2, 9) has weight 10
+Edge (3, 4) has weight 1
+Edge (3, 5) has weight 1
+Edge (3, 8) has weight 7
+Edge (3, 10) has weight 3
+Edge (3, 12) has weight 4
+Edge (4, 8) has weight 2
+Edge (5, 6) has weight 1
+Edge (6, 7) has weight 4
+Edge (9, 10) has weight 3
+Edge (9, 12) has weight 8
+Edge (10, 11) has weight 10
 
 Nodes with demands:
 Node 0 has demand 0
@@ -20,35 +28,44 @@ Node 1 has demand 0
 Node 2 has demand 0
 Node 3 has demand 0
 Node 4 has demand 0
-Node 5 has demand 73
+Node 5 has demand 0
 Node 6 has demand 0
-Node 7 has demand 0
-Node 8 has demand 67
-Node 9 has demand 38
+Node 7 has demand 40
+Node 8 has demand 57
+Node 9 has demand 0
+Node 10 has demand 0
+Node 11 has demand 54
+Node 12 has demand 62
 
 Depth of each node:
 Node 0 is at depth 0
 Node 1 is at depth 0
-Node 2 is at depth 0
+Node 2 is at depth 1
 Node 3 is at depth 1
 Node 5 is at depth 1
+Node 4 is at depth 1
 Node 6 is at depth 1
 Node 7 is at depth 1
-Node 8 is at depth 1
-Node 4 is at depth 1
-Node 9 is at depth 2
+Node 9 is at depth 1
+Node 11 is at depth 1
+Node 8 is at depth 2
+Node 10 is at depth 2
+Node 12 is at depth 2
 
-Longest path length (height) or the number of levels in BOM (in terms of number of nodes): 4
-Longest path: 1 -> 4 -> 6 -> 7 -> 9
+Longest path length (height) or the number of levels in BOM (in terms of number of nodes): 5
+Longest path: 0 -> 2 -> 3 -> 5 -> 6 -> 7
 
 BOM matrix:
-[[ 0  0  0  2  0 10  6  5  6  0  0]
- [ 0  0  0  0  9  9  0  0  0  0  0]
- [ 0  0  0  9  1  0  0  0  0  0  0]
- [ 0  0  0  0  0  0  0  0  1  0  0]
- [ 0  0  0  0  0  0  1  0  0  7  0]
- [ 0  0  0  0  0  0  0  0  0  0 73]
- [ 0  0  0  0  0  0  0 10  0  0  0]
- [ 0  0  0  0  0  0  0  0  0  3  0]
- [ 0  0  0  0  0  0  0  0  0  0 67]
- [ 0  0  0  0  0  0  0  0  0  0 38]]
+[[ 0  0  4  2  0  8  0  0  0  0  0  0  0  0]
+ [ 0  0  1  0  7  0 10  5  0  2  0  2  0  0]
+ [ 0  0  0  3  0  0  0  0  0 10  0  0  0  0]
+ [ 0  0  0  0  1  1  0  0  7  0  3  0  4  0]
+ [ 0  0  0  0  0  0  0  0  2  0  0  0  0  0]
+ [ 0  0  0  0  0  0  1  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0  4  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0 40]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0 57]
+ [ 0  0  0  0  0  0  0  0  0  0  3  0  8  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0 10  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0 54]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0 62]]
