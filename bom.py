@@ -1,9 +1,11 @@
+import json
 import random
+import sys
+
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
-import json
-import sys
+
 
 class BOM:
     def __init__(self, n, num_roots, max_depth, max_parents, min_demand, max_demand, seed=None):

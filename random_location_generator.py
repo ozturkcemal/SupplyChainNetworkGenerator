@@ -1,14 +1,18 @@
 # random_location_generator.py
 
+import json
 import os
-import shapefile
-import numpy as np
-import geopandas as gpd
-import matplotlib.pyplot as plt
-from shapely.geometry import Point, shape
 from collections import Counter
 from math import radians, sin, cos, sqrt, atan2
+
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
+import shapefile
+from shapely.geometry import Point, shape
+
 from facility import Facility  # Import the Facility class
+
 
 class RandomLocationGenerator:
     def __init__(self, shapefile_path, fixed_seed):
@@ -80,7 +84,7 @@ class RandomLocationGenerator:
 
         for index, (lon, lat) in enumerate(random_locations):
             ttr = np.random.randint(2, 11)  # Random TTR between 2 and 10
-            si = np.random.randint(1, 11)   # Random SI between 1 and 10
+            si = np.random.randint(1, 11)  # Random SI between 1 and 10
             facility_obj = Facility(index, lat, lon, ttr, si)
             self.facility_objects.append(facility_obj)
 
@@ -143,11 +147,49 @@ class RandomLocationGenerator:
         plt.savefig(file_name)
         plt.close()
 
-        print(f"Plot saved to {file_name}")
+        # print(f"Plot saved to {file_name}")
 
         # Write Facility objects to Facilities.txt
         facilities_file = os.path.join(output_directory, 'Facilities.txt')
         with open(facilities_file, 'w') as f:
             for fac in self.facility_objects:
                 f.write(f"{fac}\n")
-        print(f"Facility details saved to {facilities_file}")
+        # print(f"Facility details saved to {facilities_file}")
+        self.export_facility_data_to_json('facility_data.json')
+
+    def export_facility_data_to_json(self, filename):
+        # Prepare data for the JSON file
+        data = {
+            "facilities": []  # This will contain the rows of the table
+        }
+
+        # Create the header for the table
+        headers = ["facilities"] + [f"Facility {i}" for i in range(len(self.facility_objects))] + ["TTR", "SI", "lat",
+                                                                                                   "lon"]
+
+        # Initialize the table data with the headers
+        table = [headers]
+
+        # Add the distance data and additional information for each facility
+        for i, facility in enumerate(self.facility_objects):
+            row = [f"Facility {i}"]  # Start with the facility index
+            # Add distance data
+            row.extend([facility.distances[j] for j in range(len(self.facility_objects))])
+            # Add additional information (TTR, SI, lat, lon)
+            row.extend([facility.ttr, facility.si, facility.lat, facility.lon])
+            table.append(row)
+
+        # Add the table to the data dictionary
+        data["facilities"] = table
+
+        # Ensure the 'output' directory exists
+        output_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output')
+        os.makedirs(output_directory, exist_ok=True)
+
+        # Save the data to a JSON file in the 'output' directory
+        output_file = os.path.join(output_directory, filename)
+        with open(output_file, 'w') as json_file:
+            json.dump(data, json_file, indent=4)
+        # df = pd.DataFrame(data) #added for checking the json format
+        # print(df)
+        # print(f"Facility data saved to {output_file}")
