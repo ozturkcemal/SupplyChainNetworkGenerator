@@ -3,7 +3,6 @@ import random
 from bom import BOM
 from random_location_generator import RandomLocationGenerator
 
-
 class Main:
     def __init__(self):
         self.get_user_input()
@@ -29,6 +28,11 @@ class Main:
         # Store the list of facilities from RandomLocationGenerator
         self.facilities = self.location_generator.get_facilities()
         print(f"List of facility indices: {[fac.index for fac in self.facilities]}")
+
+        # Create a mapping of nodes to facilities
+        self.node_facilities_mapping = self.create_node_facilities_mapping()
+        for node, facilities in self.node_facilities_mapping.items():
+            print(f"Node {node} is mapped to facilities: {[fac.index for fac in facilities]}")
 
     def get_user_input(self):
         n_input = input(
@@ -74,6 +78,15 @@ class Main:
                     break
             except ValueError:
                 print("Invalid input. Please enter a valid integer.")
+
+    def create_node_facilities_mapping(self):
+        """Create a mapping of nodes to a random list of facilities."""
+        mapping = {}
+        for node in self.nodes:
+            num_facilities = random.randint(2, max(3, len(self.facilities) // 3))
+            selected_facilities = random.sample(self.facilities, num_facilities)
+            mapping[node] = selected_facilities
+        return mapping
 
 
 if __name__ == "__main__":

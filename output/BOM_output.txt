@@ -1,16 +1,24 @@
 Edges with weights:
-Edge (0, 4) has weight 1
-Edge (0, 8) has weight 2
-Edge (1, 3) has weight 2
-Edge (1, 4) has weight 10
-Edge (1, 5) has weight 6
-Edge (1, 7) has weight 9
-Edge (2, 3) has weight 5
+Edge (0, 4) has weight 10
+Edge (1, 4) has weight 6
+Edge (1, 6) has weight 2
+Edge (1, 8) has weight 7
+Edge (1, 9) has weight 8
+Edge (1, 12) has weight 8
+Edge (2, 6) has weight 10
 Edge (2, 8) has weight 8
-Edge (3, 5) has weight 4
-Edge (4, 6) has weight 3
-Edge (5, 6) has weight 8
-Edge (6, 7) has weight 1
+Edge (2, 9) has weight 3
+Edge (2, 11) has weight 3
+Edge (3, 5) has weight 7
+Edge (3, 7) has weight 1
+Edge (3, 12) has weight 6
+Edge (4, 5) has weight 1
+Edge (4, 13) has weight 8
+Edge (5, 7) has weight 3
+Edge (6, 10) has weight 8
+Edge (7, 10) has weight 7
+Edge (10, 11) has weight 2
+Edge (11, 13) has weight 6
 
 Nodes with demands:
 Node 0 has demand 0
@@ -20,30 +28,45 @@ Node 3 has demand 0
 Node 4 has demand 0
 Node 5 has demand 0
 Node 6 has demand 0
-Node 7 has demand 24
-Node 8 has demand 19
+Node 7 has demand 0
+Node 8 has demand 98
+Node 9 has demand 71
+Node 10 has demand 0
+Node 11 has demand 0
+Node 12 has demand 21
+Node 13 has demand 61
 
 Depth of each node:
 Node 0 is at depth 0
 Node 1 is at depth 0
 Node 2 is at depth 0
+Node 3 is at depth 0
 Node 4 is at depth 1
+Node 6 is at depth 1
 Node 8 is at depth 1
-Node 3 is at depth 1
+Node 9 is at depth 1
+Node 12 is at depth 1
+Node 11 is at depth 1
 Node 5 is at depth 1
 Node 7 is at depth 1
-Node 6 is at depth 2
+Node 13 is at depth 2
+Node 10 is at depth 2
 
-Longest path length (height) or the number of levels in BOM (in terms of number of nodes): 4
-Longest path: 1 -> 3 -> 5 -> 6 -> 7
+Longest path length (height) or the number of levels in BOM (in terms of number of nodes): 6
+Longest path: 0 -> 4 -> 5 -> 7 -> 10 -> 11 -> 13
 
 BOM matrix:
-[[ 0  0  0  0  1  0  0  0  2  0]
- [ 0  0  0  2 10  6  0  9  0  0]
- [ 0  0  0  5  0  0  0  0  8  0]
- [ 0  0  0  0  0  4  0  0  0  0]
- [ 0  0  0  0  0  0  3  0  0  0]
- [ 0  0  0  0  0  0  8  0  0  0]
- [ 0  0  0  0  0  0  0  1  0  0]
- [ 0  0  0  0  0  0  0  0  0 24]
- [ 0  0  0  0  0  0  0  0  0 19]]
+[[ 0  0  0  0 10  0  0  0  0  0  0  0  0  0  0]
+ [ 0  0  0  0  6  0  2  0  7  8  0  0  8  0  0]
+ [ 0  0  0  0  0  0 10  0  8  3  0  3  0  0  0]
+ [ 0  0  0  0  0  7  0  1  0  0  0  0  6  0  0]
+ [ 0  0  0  0  0  1  0  0  0  0  0  0  0  8  0]
+ [ 0  0  0  0  0  0  0  3  0  0  0  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  8  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  7  0  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0  0 98]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0  0 71]
+ [ 0  0  0  0  0  0  0  0  0  0  0  2  0  0  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0  6  0]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0  0 21]
+ [ 0  0  0  0  0  0  0  0  0  0  0  0  0  0 61]]
