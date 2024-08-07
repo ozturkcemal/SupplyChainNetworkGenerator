@@ -11,7 +11,6 @@ from shapely.geometry import Point, shape
 
 from facility import Facility  # Import the Facility class
 
-
 class RandomLocationGenerator:
     def __init__(self, shapefile_path, fixed_seed, min_demand, max_demand):
         self.shapefile_path = shapefile_path
@@ -85,7 +84,7 @@ class RandomLocationGenerator:
         for index, (lon, lat) in enumerate(random_locations):
             ttr = np.random.randint(2, 11)  # Random TTR between 2 and 10
             si = np.random.randint(1, 11)  # Random SI between 1 and 10
-            capacity = np.random.randint(self.min_demand * 2, self.min_demand * 5 + 1)  # Capacity between min_demand * 2 and min_demand * 5
+            capacity = np.random.randint(self.min_demand * 5, self.min_demand * 10 + 1)  # Capacity between min_demand * 2 and min_demand * 5
             facility_obj = Facility(index, lat, lon, ttr, si, capacity)
             self.facility_objects.append(facility_obj)
 
@@ -99,8 +98,12 @@ class RandomLocationGenerator:
                     distance = self.haversine(fac1.lon, fac1.lat, fac2.lon, fac2.lat)
                     fac1.distances[fac2.index] = distance
                     fac2.distances[fac1.index] = distance  # Assign the distance from j to i
+                    # Compute TGHG
+                    fac1.tghg[fac2.index] = distance * 1.05
+                    fac2.tghg[fac1.index] = distance * 1.05  # Assign the TGHG from j to i
                 elif i == j:
                     fac1.distances[fac1.index] = 0  # Distance to itself is zero
+                    fac1.tghg[fac1.index] = 0  # TGHG to itself is zero
 
         # Create GeoDataFrame for plotting
         gdf_locations = gpd.GeoDataFrame(geometry=[Point(lon, lat) for lon, lat in random_locations],
@@ -156,6 +159,7 @@ class RandomLocationGenerator:
                 f.write(f"{fac}\n")
         # print(f"Facility details saved to {facilities_file}")
         self.export_facility_data_to_json('facility_data.json')
+        self.export_tghg_to_json('tghg_data.json')
 
     def get_facilities(self):
         """Return the list of Facility objects."""
@@ -178,7 +182,7 @@ class RandomLocationGenerator:
         for i, facility in enumerate(self.facility_objects):
             row = [f"Facility {i}"]  # Start with the facility index
             # Add distance data
-            row.extend([facility.distances[j] for j in range(len(self.facility_objects))])
+            row.extend([facility.distances.get(j, 0) for j in range(len(self.facility_objects))])
             # Add additional information (TTR, SI, capacity, lat, lon)
             row.extend([facility.ttr, facility.si, facility.capacity, facility.lat, facility.lon])
             table.append(row)
@@ -195,3 +199,35 @@ class RandomLocationGenerator:
         with open(json_file_path, 'w') as json_file:
             json.dump(data, json_file, indent=4)
         # print(f"Facility data saved to {json_file_path}")
+
+    def export_tghg_to_json(self, filename):
+        # Prepare data for the TGHG JSON file
+        data = {
+            "tghg": []  # This will contain the rows of the table
+        }
+
+        # Create the header for the table
+        headers = ["facilities"] + [f"Facility {i}" for i in range(len(self.facility_objects))]
+
+        # Initialize the table data with the headers
+        table = [headers]
+
+        # Add the TGHG data for each facility
+        for i, facility in enumerate(self.facility_objects):
+            row = [f"Facility {i}"]  # Start with the facility index
+            # Add TGHG data
+            row.extend([facility.tghg.get(j, 0) for j in range(len(self.facility_objects))])
+            table.append(row)
+
+        # Add the table to the data dictionary
+        data["tghg"] = table
+
+        # Ensure the 'output' directory exists
+        output_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output')
+        os.makedirs(output_directory, exist_ok=True)
+
+        # Save the data to a JSON file
+        json_file_path = os.path.join(output_directory, filename)
+        with open(json_file_path, 'w') as json_file:
+            json.dump(data, json_file, indent=4)
+        # print(f"TGHG data saved to {json_file_path}")

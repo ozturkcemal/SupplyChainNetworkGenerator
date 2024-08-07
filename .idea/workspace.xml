@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2e6cf0e-cd9d-45f0-8b9a-c9499f73bee8" name="Changes" comment="haversin computation refined to not consider both pairs as they are symmetric. some more refinement, defining capacity attribute for facilities and assinging to between 2 times of min demand and 5 times of max demand">
+    <list default="true" id="e2e6cf0e-cd9d-45f0-8b9a-c9499f73bee8" name="Changes" comment="mapping of BOM and alternative faciliteis completed in main">
+      <change afterPath="$PROJECT_DIR$/output/inventory.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/pghg.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/tghg_data.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/times.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/facility.py" beforeDir="false" afterPath="$PROJECT_DIR$/facility.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/BOM_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/output/BOM_output.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/BOM_visualization.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/BOM_visualization.png" afterDir="false" />
@@ -13,6 +18,7 @@
       <change beforePath="$PROJECT_DIR$/output/bom_matrix.json" beforeDir="false" afterPath="$PROJECT_DIR$/output/bom_matrix.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/facility_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/output/facility_data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/facility_locations.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/facility_locations.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/random_location_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/random_location_generator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722969369442</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="mapping of BOM and alternative faciliteis completed in main">
+      <option name="closed" value="true" />
+      <created>1723024867527</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1723024867527</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -223,6 +237,7 @@
     <MESSAGE value="json for facilty data added, code refactored and the version before creating item facility pairs" />
     <MESSAGE value="first step completed to access generated BOM nodes and facilitirs in main class" />
     <MESSAGE value="haversin computation refined to not consider both pairs as they are symmetric. some more refinement, defining capacity attribute for facilities and assinging to between 2 times of min demand and 5 times of max demand" />
-    <option name="LAST_COMMIT_MESSAGE" value="haversin computation refined to not consider both pairs as they are symmetric. some more refinement, defining capacity attribute for facilities and assinging to between 2 times of min demand and 5 times of max demand" />
+    <MESSAGE value="mapping of BOM and alternative faciliteis completed in main" />
+    <option name="LAST_COMMIT_MESSAGE" value="mapping of BOM and alternative faciliteis completed in main" />
   </component>
 </project>
