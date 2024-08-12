@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{geometry}
+
+\geometry{margin=1in}
+
+\begin{document}
+	
+	\setcounter{algorithm}{3}  % Set the algorithm counter to 3 so the next algorithm is numbered 4
+	
+	\begin{algorithm}
+		\caption{\texttt{Mapping(BOM, Facilities, seed, min\_demand, max\_demand)}}
+		\label{alg:mapping}
+		\begin{algorithmic}[1]
+			
+			\State Let \texttt{facilities\_mapping} be an empty list of alternative facilities for each node in BOM
+			\State Let \texttt{processing\_time} be an empty list indicating processing times of each item in alternative facilities
+			\State Let \texttt{inventory} be an empty list indicating inventory level of each item in alternative facilities
+			\State Let \texttt{PGHG} be an empty list indicating production greenhouse gas emission levels for unit processing time of each item in each alternative facility
+			
+			\For{each $i$ in BOM} \Comment{Generating alternative facilities for each node}
+			\State \texttt{facilities\_mapping}[i] $\gets$ \{\}
+			\State $num\_facilities \gets U(2, \max(3, |\text{Facilities}|/3))$
+			\State $alternative\_facilities \gets \texttt{Uniform\_sample(Facilities, num\_facilities)}$ \Comment{Choose alternative facilities as a random sample from all facilities}
+			\State \texttt{facilities\_mapping}[i] $\gets$ alternative\_facilities
+			\EndFor
+			
+			\For{each $i$ in BOM} \Comment{Generating processing times, inventory and PGHG in alternative facilities}
+			\For{each $j$ in \texttt{facilities\_mapping}[i]}
+			\State \texttt{processing\_time}[i][j] $\gets U(5,10)$
+			\State \texttt{inventory}[i][j] $\gets U(\text{min\_demand} \times 2, \text{max\_demand} \times 2)$
+			\State \texttt{PGHG}[i][j] $\gets \texttt{processing\_time}[i][j] \times \text{max\_demand}$
+			\EndFor
+			\EndFor
+			
+			\State \Return \texttt{facilities\_mapping}, \texttt{processing\_time}, \texttt{inventory}, \texttt{PGHG}
+			
+		\end{algorithmic}
+	\end{algorithm}
+	
+\end{document}

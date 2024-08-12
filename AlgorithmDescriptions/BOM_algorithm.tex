@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+
+\pagestyle{empty}  % Suppress page numbers
+
+\begin{document}
+	
+	\setcounter{algorithm}{1}  % Set the algorithm counter to 1 so the next algorithm is numbered 2
+	
+	\begin{algorithm}
+		\caption{\texttt{BOM\_generator(n, root, depth, max\_parents, min\_demand, max\_demand, seed)}}
+		
+		
+		\begin{algorithmic}[1]
+			
+			\State Let $G$ be a directed graph
+			\State Let $leaf\_nodes$ be a list
+			\State Let $demand$ be a dictionary
+			
+			\Statex
+			\State $G \gets \texttt{DiGraph()}$
+			\For{$i \gets 0$ \textbf{to} $root-1$}
+			\State $G.\texttt{add\_node}(i)$
+			\EndFor
+			
+			\For{$i \gets root$ \textbf{to} $n-1$}
+			\State $Possible\_parents \gets G.\texttt{nodes}()$
+			\State $num\_parents \gets \min(|Possible\_parents|, max\_parents)$
+			\State $Parents \gets \texttt{Uniform\_sample}(Possible\_parents, num\_parents)$
+			\State $G.\texttt{add\_node}(i)$
+			\For{\textbf{each} $parent \in Parents$}
+			\State $G.\texttt{add\_edge}(parent, i, \texttt{weight} = \texttt{Uniform\_integer}(1, 10))$
+			\EndFor
+			\EndFor
+			
+			\For{\textbf{each} $node \in G.\texttt{nodes}()$} \Comment{Detecting non-connected nodes and adding edges}
+			\If{$G.\texttt{in\_degree}(node) == 0$ \textbf{and} $node \geq root$}
+			\State $parent \gets \texttt{Uniform\_node\_choice}(G)$
+			\If{$parent \neq node$}
+			\State $G.\texttt{add\_edge}(parent, node, \texttt{weight} = \texttt{Uniform\_integer}(1, 10))$
+			\EndIf
+			\EndIf
+			\EndFor
+			
+			\For{\textbf{each} $node \in G$}
+			\If{$G.\texttt{out\_degree}(node) == 0$}
+			\State $leaf\_nodes.\texttt{add}(node)$
+			\EndIf
+			\EndFor
+			
+			\If{$\texttt{is\_weakly\_connected}(G)$}
+			\State $components \gets G.\texttt{weakly\_connected\_components}(G)$
+			\If{$|components| > 1$}
+			\For{$i \gets 0$ \textbf{to} $|components| - 2$}
+			\State $src \gets components[i][-1]$
+			\State $dest \gets components[i+1][0]$
+			\State $G.\texttt{add\_edge}(src, dest, \texttt{weight} = \texttt{Uniform\_integer}(1, 10))$
+			\EndFor
+			\EndIf
+			\EndIf
+			
+			\For{\textbf{each} $i \in G.\texttt{nodes}()$}
+			\If{$i \in leaf\_nodes$}
+			\State $demand[i] \gets \texttt{Uniform}(min\_demand, max\_demand)$
+			\Else
+			\State $demand[i] \gets 0$
+			\EndIf
+			\EndFor
+			
+			\Statex
+			\State \textbf{return} $BOM$
+			
+		\end{algorithmic}
+	\end{algorithm}
+	
+\end{document}

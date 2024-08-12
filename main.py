@@ -70,7 +70,7 @@ class Main:
 
     def get_user_input(self):
         n_input = input(
-            "Enter the number of items in the Bill of Material (between 5 to 10, or press Enter to randomly assign): ")
+            "Enter the number of items in the Bill of Material (between 8 to 20, or press Enter to randomly assign): ")
         self.n = int(n_input) if n_input else random.randint(8, 20)
 
         num_roots_input = input(

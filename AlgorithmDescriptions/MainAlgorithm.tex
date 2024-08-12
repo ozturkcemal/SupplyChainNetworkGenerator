@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+
+\begin{document}
+	
+	\begin{algorithm}
+		\caption{Supply Chain Network (SCN) Generator}
+		\begin{algorithmic}[1]
+			
+			\State $n$ : Number of items in the Bill of Material (BOM), default $n \sim U(8, 20)$
+			\State $root$ : Number of root items, default $root \sim U(2, n/2)$
+			\State $depth$ : Maximum tier or depth of the BOM tree, default $depth = 3$
+			\State $max\_parents$ : Maximum number of parents an item might have, default $max\_parents = 2$
+			\State $seed$ : Random number seed for reproducibility, default $seed \sim U(0, 10000)$
+			\State $min\_demand$ : Minimum demand for final items (leaf nodes), default $min\_demand = 10$
+			\State $max\_demand$ : Maximum demand for final items (leaf nodes), default $max\_demand = 100$
+			\State $nb\_locations$ : Number of facility locations to be generated, default $nb\_locations \sim U(n/2, n)$
+			\State $BOM \gets \texttt{BOM\_generator(}n, root, depth,$
+			\Statex \hspace{1.5em} \texttt{max\_parents, min\_demand, max\_demand, seed)}
+			\State $Facilities \gets \texttt{Facility\_generator(nb\_locations, seed)}$
+			\State $SCN \gets \texttt{Mapping(BOM, Facilities,seed,min\_demand,max\_demand)}$
+			
+			\Statex
+			\State \textbf{return} SCN
+			
+		\end{algorithmic}
+	\end{algorithm}
+	
+\end{document}

@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{geometry}
+
+\geometry{margin=1in}
+
+\begin{document}
+	
+	\setcounter{algorithm}{2}  % Set the algorithm counter to 3 so the next algorithm is numbered 3
+	
+	\begin{algorithm}
+		\caption{\texttt{Facilities\_generator (nb\_locations, seed, min\_demand, max\_demand)}}
+		\label{alg:facilities_generator}
+		\begin{algorithmic}[1]
+			
+			\State country\_codes $\gets$ [``EU'', ``CHN'', ``IND'', ``ZAF'', ``USA'', ``TUR'', ``IRN'']
+			\State Shapefile $\gets$ ``TM\_WORLD\_BORDERS-0.3.shp''
+			\State Boundaries $\gets$ filtered\_locations\_in\_Shapefile
+			
+			\State Facilities $\gets$ empty\_list
+			\State locations $\gets$ empty\_list
+			
+			\For{each $i$ in country\_codes}
+			\State Boundaries.add(Shapefile[i])
+			\Comment{Getting country borders.}
+			\EndFor
+			
+			\While{$|\text{locations}| < \text{nb\_locations}$}
+			\State location $\gets$ $(U(-180,180), U(-90,90))$
+			\If{location is in Boundaries}
+			\State locations.add(location)
+			\State Boundaries.remove(location)
+			\EndIf
+			\EndWhile
+			
+			\For{each $i$ in locations}
+			\State TTR[i] $\gets$ $U(2,11)$
+			\State SI[i] $\gets$ $U(1,11)$
+			\State CAP[i] $\gets$ $U(\text{min\_demand} \times 5, \text{max\_demand} \times 10)$
+			\State lon[i] $\gets$ locations[i].longitude
+			\State lat[i] $\gets$ locations[i].latitude
+			\State Facilities.add(TTR[i], SI[i], CAP[i], lon[i], lat[i])
+			\Comment{Assigning facility attributes.}
+			\EndFor
+			
+			\For{each $i$ in facilities}
+			\Comment{Haversine distance computation}
+			\For{each $j$ in facilities where index[j] < index[i]}
+			\State lon1, lat1, lon2, lat2 $\gets$ radians(lon[i], lat[i], lon[j], lat[j])
+			\State dlon $\gets$ lon2 - lon1 
+			\Comment{Difference in longitude between the two points.}
+			\State dlat $\gets$ lat2 - lat1 
+			\Comment{Difference in latitude between the two points.}
+			\State a $\gets$ sin(dlat / 2)$^2$ + cos(lat1) $\times$ cos(lat2) $\times$ sin(dlon / 2)$^2$
+			\Comment{Haversine formula’s component which calculates the square of half the chord length between the points.}
+			\State c $\gets$ $2 \times$ atan2($\sqrt{a}$, $\sqrt{1 - a}$) 
+			\Comment{Angular distance in radians between the two points on the sphere.}
+			\State r $\gets$ 6371 
+			\Comment{Radius of Earth in kilometers.}
+			\State distance[i][j] $\gets$ r $\times$ c
+			\State distance[j][i] $\gets$ distance[i][j]
+			\Comment{Distance between facilities.}
+			\State TGHG[i][j] $\gets$ distance[i][j] $\times$ 1.05
+			\Comment{Multiplied with 1.05 kg/km for trucks. (Source: 8billiontrees)}
+			\State TGHG[j][i] $\gets$ TGHG[i][j]
+			\EndFor
+			\EndFor
+			
+			\State \Return Facilities
+			
+		\end{algorithmic}
+	\end{algorithm}
+	
+\end{document}
