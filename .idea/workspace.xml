@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2e6cf0e-cd9d-45f0-8b9a-c9499f73bee8" name="Changes" comment="tghg pghg genertion and exporting json is completed&#10;random processing time and inventory assignment completed&#10;reporting refined&#10;now it is generating all supply chain network data for a single instance">
-      <change afterPath="$PROJECT_DIR$/AlgorithmDescriptions/BOM_algorithm.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlgorithmDescriptions/BOM_algorithm.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlgorithmDescriptions/Facilities_algorithm.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlgorithmDescriptions/Facilities_algorithm.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlgorithmDescriptions/MainAlgorithm.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlgorithmDescriptions/MainAlgorithm.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlgorithmDescriptions/Mapping_algorithm.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlgorithmDescriptions/Mapping_algorithm.tex" afterDir="false" />
+    <list default="true" id="e2e6cf0e-cd9d-45f0-8b9a-c9499f73bee8" name="Changes" comment="Latex code and compiled algorithm descriptions are added">
+      <change afterPath="$PROJECT_DIR$/AlgorithmDescriptions/BOM" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlgorithmDescriptions/BOM.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlgorithmDescriptions/main.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/facility_locations.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bom.py" beforeDir="false" afterPath="$PROJECT_DIR$/bom.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/BOM_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/output/BOM_output.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/BOM_visualization.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/BOM_visualization.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/Facilities.txt" beforeDir="false" afterPath="$PROJECT_DIR$/output/Facilities.txt" afterDir="false" />
@@ -64,7 +60,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
   <component name="RunManager">
@@ -227,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723053372182</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Latex code and compiled algorithm descriptions are added">
+      <option name="closed" value="true" />
+      <created>1723484880220</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1723484880220</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -235,7 +240,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -255,6 +266,7 @@
     <MESSAGE value="haversin computation refined to not consider both pairs as they are symmetric. some more refinement, defining capacity attribute for facilities and assinging to between 2 times of min demand and 5 times of max demand" />
     <MESSAGE value="mapping of BOM and alternative faciliteis completed in main" />
     <MESSAGE value="tghg pghg genertion and exporting json is completed&#10;random processing time and inventory assignment completed&#10;reporting refined&#10;now it is generating all supply chain network data for a single instance" />
-    <option name="LAST_COMMIT_MESSAGE" value="tghg pghg genertion and exporting json is completed&#10;random processing time and inventory assignment completed&#10;reporting refined&#10;now it is generating all supply chain network data for a single instance" />
+    <MESSAGE value="Latex code and compiled algorithm descriptions are added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Latex code and compiled algorithm descriptions are added" />
   </component>
 </project>

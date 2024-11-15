@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 
-
 class BOM:
     def __init__(self, n, num_roots, max_depth, max_parents, min_demand, max_demand, seed=None):
         self.n = n
@@ -18,6 +17,7 @@ class BOM:
         self.seed = seed
         self.G = None
         self.leaf_nodes = []
+        self.root_nodes = []
         self.depth = {}  # Initialize depth dictionary
 
         if seed is not None:
@@ -25,12 +25,24 @@ class BOM:
 
         self.create_connected_dag_with_multiple_parents()
         self.ensure_graph_connected()
+        self.update_leaf_nodes()
+        self.update_root_nodes()
+
+        demand = {node: (random.randint(self.min_demand, self.max_demand) if node in self.root_nodes else 0) for node in
+                  self.G.nodes}
+        nx.set_node_attributes(self.G, demand, 'demand')
+
         self.calculate_node_depths()  # Compute node depths after graph is fully constructed
 
     def update_leaf_nodes(self):
         """Update the list of leaf nodes based on the current graph structure."""
         if self.G is not None:  # Ensure that self.G is initialized
-            self.leaf_nodes = [node for node in self.G.nodes if self.G.out_degree(node) == 0]
+            self.leaf_nodes = [node for node in self.G.nodes if self.G.in_degree(node) == 0]
+
+    def update_root_nodes(self):
+        """Update the list of leaf nodes based on the current graph structure."""
+        if self.G is not None:  # Ensure that self.G is initialized
+            self.root_nodes = [node for node in self.G.nodes if self.G.out_degree(node) == 0]
 
     def create_connected_dag_with_multiple_parents(self):
         G = nx.DiGraph()
@@ -54,6 +66,7 @@ class BOM:
         # Initialize the graph and update the leaf_nodes list
         self.G = G
         self.update_leaf_nodes()
+        self.update_root_nodes()
 
         # Ensure the graph is connected
         for node in G.nodes:
@@ -63,9 +76,10 @@ class BOM:
                     G.add_edge(parent, node, weight=random.randint(1, 10))
 
         self.update_leaf_nodes()
-        demand = {node: (random.randint(self.min_demand, self.max_demand) if node in self.leaf_nodes else 0) for node in
-                  G.nodes}
-        nx.set_node_attributes(G, demand, 'demand')
+        self.update_root_nodes()
+        #demand = {node: (random.randint(self.min_demand, self.max_demand) if node in self.root_nodes else 0) for node in
+        #          G.nodes}
+        #nx.set_node_attributes(G, demand, 'demand')
         self.G = G
 
     def ensure_graph_connected(self):
@@ -82,7 +96,8 @@ class BOM:
                     self.G.add_edge(src, dest, weight=random.randint(1, 10))
                     # Optionally, add more edges to make it more connected
                     self.add_edges_between_components(components[i], components[i + 1])
-
+            self.update_leaf_nodes()
+            self.update_root_nodes()
     def add_edges_between_components(self, comp1, comp2):
         """Add edges between two components."""
         node1 = random.choice(list(comp1))
@@ -93,6 +108,8 @@ class BOM:
             node1 = random.choice(list(comp1))
             node2 = random.choice(list(comp2))
             self.G.add_edge(node1, node2, weight=random.randint(1, 10))
+        self.update_leaf_nodes()
+        self.update_root_nodes()
 
     def calculate_node_depths(self):
         """Compute and update the depth of each node."""
@@ -174,8 +191,8 @@ class BOM:
 
         # Save and show the plot
         plt.savefig(filename)
-        plt.show(block=False)
-        plt.pause(2)
+        #plt.show(block=False)
+        #plt.pause(2)
         plt.close()
 
     def create_bom_matrix(self):
@@ -227,6 +244,9 @@ class BOM:
             print(
                 f"\nLongest path length (height) or the number of levels in BOM (in terms of number of nodes): {longest_path_length}")
             print(f"Longest path: {' -> '.join(map(str, longest_path))}")
+
+            print(f"Leaf nodes are {self.leaf_nodes}")
+            print(f"Root nodes are {self.root_nodes}")
 
             # Visualize the tree and save the figure
             self.visualize_graph('output/BOM_visualization.png')
