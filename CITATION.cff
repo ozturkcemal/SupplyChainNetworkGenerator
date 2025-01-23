@@ -1,0 +1,35 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Supply Chain Network Generator
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: 'Cemalettin '
+    family-names: Ozturk
+    email: cemalettin.ozturk01@gmail.com
+    affiliation: Munster Technological University
+    orcid: 'https://orcid.org/0000-0001-5190-9319'
+identifiers:
+  - type: url
+    value: >-
+      https://scholar.google.com/citations?user=TivR1acAAAAJ&hl=en
+    description: Google Scholar
+repository-code: 'https://github.com/ozturkcemal/SupplyChainNetworkGenerator'
+abstract: >-
+  random supply chain network generator with a BOM tree as
+  an acyclic directed graph with multiple root and leaf
+  nodes, single connected component, given depth and random
+  locations with shape files
+keywords:
+  - supply chain
+  - network
+  - bill of material
+  - facility location
+license: MIT
+commit: 910c44a
+version: '1.0'
+date-released: '2024-12-10'
